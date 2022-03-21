@@ -14,6 +14,7 @@ export class FilterBarComponent implements OnInit, OnDestroy {
   filterChanged = new EventEmitter<SecuritiesFilter>();
 
   currencyForm = new FormControl();
+  // Maybe the backend can provide a cheap request to get these choises depending on available datas
   currencyList = ['EUR', 'USD', 'GBP'];
   typeForm = new FormControl();
   typeList = ['Equity', 'Closed-endFund', 'BankAccount', 'DirectHolding', 'Generic', 'Collectible', 'Loan', 'RealEstate', 'Collectible'];
