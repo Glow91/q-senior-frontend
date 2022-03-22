@@ -21,6 +21,13 @@ export class SecurityService {
     return of(filteredSecurities).pipe(delay(1000));
   }
 
+  /**
+   * Get Securities length server request mock
+   * */
+  getSecuritiesLength(securityFilter?: SecuritiesFilter): Observable<number> {
+    return of(this.filterSecurities(securityFilter).length).pipe(delay(Math.random() * 200));
+  }
+
   private filterSecurities(securityFilter: SecuritiesFilter) {
     if (!securityFilter) return SECURITIES;
 

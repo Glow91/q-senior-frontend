@@ -13,6 +13,7 @@ import { FilterBarComponent } from './components/filter-bar/filter-bar.component
 import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatInputModule,
     MatSelectModule,
     MatOptionModule,
+    MatPaginatorModule,
     ReactiveFormsModule,
   ],
   providers: [],

@@ -28,3 +28,11 @@
     <td class="mat-cell" colspan="3"><i>No data</i></td>
   </tr>
 </filterable-table>
+<mat-paginator 
+  [style.display]="(loadingSecurities$ | async) ? 'none' : 'block'"
+  [length]="securitiesLength$ | async"
+  [pageSize]="pageSizeOptions[1]"
+  [pageSizeOptions]="pageSizeOptions"
+  (page)="onPageChanged($event)"
+  aria-label="Select page">
+</mat-paginator>
