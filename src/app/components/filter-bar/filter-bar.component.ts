@@ -1,8 +1,15 @@
-import { Component, OnInit, Output, EventEmitter, OnDestroy } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, OnDestroy, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatRadioChange } from '@angular/material/radio';
 import { auditTime, Subject, Subscription } from 'rxjs';
 import { SecuritiesFilter } from 'src/app/models/securitiesFilter';
+
+export interface FilterBarConfig {
+  showNameFilter: boolean;
+  showCurrencyFilter: boolean;
+  showTypeFilter: boolean;
+  showPrivateFilter: boolean;
+}
 
 @Component({
   selector: 'filter-bar',
@@ -10,17 +17,25 @@ import { SecuritiesFilter } from 'src/app/models/securitiesFilter';
   styleUrls: ['./filter-bar.component.scss']
 })
 export class FilterBarComponent implements OnInit, OnDestroy {
+  @Input()
+  config: FilterBarConfig = {
+    showNameFilter: true,
+    showCurrencyFilter: true,
+    showTypeFilter: true,
+    showPrivateFilter: true,
+  }
+
   @Output()
   filterChanged = new EventEmitter<SecuritiesFilter>();
 
-  currencyForm = new FormControl();
+  public currencyForm = new FormControl();
   // Maybe the backend can provide a cheap request to get these choises depending on available datas
-  currencyList = ['EUR', 'USD', 'GBP'];
-  typeForm = new FormControl();
-  typeList = ['Equity', 'Closed-endFund', 'BankAccount', 'DirectHolding', 'Generic', 'Collectible', 'Loan', 'RealEstate', 'Collectible'];
-  searchForm = new FormControl();
+  public currencyList = ['EUR', 'USD', 'GBP'];
+  public typeForm = new FormControl();
+  public typeList = ['Equity', 'Closed-endFund', 'BankAccount', 'DirectHolding', 'Generic', 'Collectible', 'Loan', 'RealEstate', 'Collectible'];
+  public searchForm = new FormControl();
 
-  filter: SecuritiesFilter = {
+  public filter: SecuritiesFilter = {
     currencies: this.currencyList,
     types: this.typeList,
   }
