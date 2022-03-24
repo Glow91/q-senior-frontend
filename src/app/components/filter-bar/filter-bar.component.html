@@ -15,4 +15,9 @@
         <mat-option *ngFor="let type of typeList" [value]="type">{{type}}</mat-option>
     </mat-select>
   </mat-form-field>
+  <mat-radio-group (change)="toggleChanged($event)">
+    <mat-radio-button value="1">Private</mat-radio-button>
+    <mat-radio-button value="2">Public</mat-radio-button>
+    <mat-radio-button value="3" checked>All</mat-radio-button>
+  </mat-radio-group>
 </div>

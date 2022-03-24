@@ -1,8 +1,8 @@
 import { Component, OnInit, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { MatRadioChange } from '@angular/material/radio';
 import { auditTime, Subject, Subscription } from 'rxjs';
 import { SecuritiesFilter } from 'src/app/models/securitiesFilter';
-
 
 @Component({
   selector: 'filter-bar',
@@ -62,6 +62,26 @@ export class FilterBarComponent implements OnInit, OnDestroy {
       ...this.filter,
       name: this.searchForm.value,
     };
+    this.filterChanged.emit(this.filter);
+  }
+
+  toggleChanged(e: MatRadioChange) {
+    let isPrivate: boolean;
+    switch (e.value) {
+      case '1':
+        isPrivate = true;
+        break;
+      case '2':
+        isPrivate = false;
+        break;
+      default:
+        isPrivate = undefined;
+        break;
+    }
+    this.filter = {
+      ...this.filter,
+      isPrivate,
+    }
     this.filterChanged.emit(this.filter);
   }
 }
